@@ -23,18 +23,11 @@ public class Individual extends TaxPayer {
 
 	@Override
 	public double tax() {
-
-		double anualIncome = getAnualIncome();
-		if (anualIncome < 20000.0) {
-			anualIncome = (anualIncome * 0.15) - (getHealthExpenditures() * 0.50);
+		if (getAnualIncome() < 20000.0) {
+			return getAnualIncome() * 0.15 - healthExpenditures * 0.5;
 		} else {
-			anualIncome = (anualIncome * 0.25) - (getHealthExpenditures() * 0.50);
+			return getAnualIncome() * 0.25 - healthExpenditures * 0.5;
 		}
-		return anualIncome;
-	}
-
-	public String toString() {
-		return getName() + ": $ " + String.format("%.2f", tax());
 	}
 
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 
+import entities.Company;
 import entities.Individual;
 import entities.TaxPayer;
 
@@ -32,9 +33,24 @@ public class Program {
 				System.out.println("Health expenditures: ");
 				double healthExpenditures = sc.nextDouble();
 				list.add(new Individual(name, anualIncome, healthExpenditures));
-				System.out.println(list.toString());
+			} else {
+				System.out.println("Number of employees: ");
+				int numberOfEmployees = sc.nextInt();
+				list.add(new Company(name, anualIncome, numberOfEmployees));
 			}
 		}
+
+		double sum = 0.0;
+		System.out.println();
+		System.out.println("TAXES PAID:");
+		for (TaxPayer tp : list) {
+			double tax = tp.tax();
+			System.out.println(tp.getName() + ": $ " + String.format("%.2f", tax));
+			sum += tax;
+		}
+
+		System.out.println();
+		System.out.println("TOTAL TAXES: $" + String.format("%.2f", sum));
 
 		sc.close();
 
